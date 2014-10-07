@@ -24,19 +24,20 @@ import facebook4j.internal.org.json.JSONObject;
 
 /**
  * Super interface of Facebook Response data interfaces
- * 
+ *
  * @author Ryuji Yamashita - roundrop at gmail.com
  */
 /*package*/ abstract class FacebookResponseImpl implements FacebookResponse, java.io.Serializable {
     private static final long serialVersionUID = 4709046756028485684L;
-    
+
     private Metadata metadata;
+    private JSONObject json;
 
     public FacebookResponseImpl() {}
-    
+
     public FacebookResponseImpl(HttpResponse res) throws FacebookException {
         if (res == null) return;
-        JSONObject json = res.asJSONObject();
+        json = res.asJSONObject();
         if (!json.isNull("metadata")) {
             try {
                 metadata = new MetadataJSONImpl(json.getJSONObject("metadata"));
@@ -44,6 +45,10 @@ import facebook4j.internal.org.json.JSONObject;
                 throw new FacebookException(jsone.getMessage(), jsone);
             }
         }
+    }
+
+    public JSONObject getResponseAsJson() {
+    	return json;
     }
 
     public Metadata getMetadata() {

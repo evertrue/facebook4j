@@ -19,17 +19,21 @@ package facebook4j;
 import java.net.URL;
 import java.util.List;
 
+import facebook4j.internal.org.json.JSONObject;
+
 /**
  * Super interface of Facebook Response data interfaces
  * @author Ryuji Yamashita - roundrop at gmail.com
  */
 public interface FacebookResponse {
+
+	JSONObject getResponseAsJson();
     /**
      * Returns the introspection of the object if available.
      * @return introspection of the object
      */
     Metadata getMetadata();
-    
+
     /**
      * An interface represents introspection of objects.
      * @author Ryuji Yamashita - roundrop at gmail.com
@@ -37,7 +41,7 @@ public interface FacebookResponse {
      */
     interface Metadata {
         Metadata.Connections getConnections();
-        
+
         interface Connections {
             URL getURL(String connectionName);
             List<String> getConnectionNames();

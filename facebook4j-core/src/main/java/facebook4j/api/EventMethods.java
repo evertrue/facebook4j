@@ -16,6 +16,8 @@
 
 package facebook4j.api;
 
+import java.net.URL;
+
 import facebook4j.Event;
 import facebook4j.EventUpdate;
 import facebook4j.FacebookException;
@@ -26,8 +28,6 @@ import facebook4j.RSVPStatus;
 import facebook4j.Reading;
 import facebook4j.ResponseList;
 import facebook4j.Video;
-
-import java.net.URL;
 
 /**
  * @author Ryuji Yamashita - roundrop at gmail.com
@@ -72,7 +72,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/page/">Page - Facebook Developers</a> - Connections - events
      */
     ResponseList<Event> getEvents(String id, Reading reading) throws FacebookException;
-    
+
 
     /**
      * Creates the event for the current user/page.
@@ -94,7 +94,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/page/#events">Page#events - Facebook Developers</a> - Connections - events
      */
     String createEvent(String id, EventUpdate eventUpdate) throws FacebookException;
-    
+
     /**
      * Updates the event.
      * @param eventId the ID of a event
@@ -105,7 +105,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/page/#events">Page#events - Facebook Developers</a> - Connections - events
      */
     boolean editEvent(String eventId, EventUpdate eventUpdate) throws FacebookException;
-    
+
     /**
      * Deletes the event.
      * @param eventId the ID of a event
@@ -168,7 +168,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#statuses">Event#statuses - Facebook Developers</a>
      */
     String postEventStatusMessage(String eventId, String message) throws FacebookException;
-    
+
 
     /**
      * Returns a list of all users who have not replied to the event.
@@ -207,7 +207,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#invited">Event#invited - Facebook Developers</a>
      */
     ResponseList<RSVPStatus> getRSVPStatusAsInvited(String eventId, String userId) throws FacebookException;
-    
+
     /**
      * Invites a user to the event.
      * @param eventId the ID of a event
@@ -227,7 +227,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#invited">Event#invited - Facebook Developers</a>
      */
     boolean inviteToEvent(String eventId, String[] userIds) throws FacebookException;
-    
+
     /**
      * Un-invites user from the event.
      * @param eventId the ID of a event
@@ -247,6 +247,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#attending">Event#attending - Facebook Developers</a>
      */
     ResponseList<RSVPStatus> getRSVPStatusInAttending(String eventId) throws FacebookException;
+    ResponseList<RSVPStatus> getRSVPStatusInAttending(String eventId, Reading reading) throws FacebookException;
 
     /**
      * Checks a specific user responded 'yes' to the event.
@@ -257,7 +258,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#attending">Event#attending - Facebook Developers</a>
      */
     ResponseList<RSVPStatus> getRSVPStatusInAttending(String eventId, String userId) throws FacebookException;
-    
+
     /**
      * RSVPs the current user as 'attending' the event.
      * @param eventId the ID of a event
@@ -344,7 +345,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#picture">Event#picture - Facebook Developers</a>
      */
     URL getEventPictureURL(String eventId, PictureSize size) throws FacebookException;
-    
+
     /**
      * Updates the event's profile picture.
      * @param eventId the ID of a event
@@ -381,7 +382,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#photos">Event#photos - Facebook Developers</a>
      */
     ResponseList<Photo> getEventPhotos(String eventId, Reading reading) throws FacebookException;
-    
+
     /**
      * Posts the photo on a event's wall.
      * @param eventId the ID of a event
@@ -402,7 +403,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#photos">Event#photos - Facebook Developers</a>
      */
     String postEventPhoto(String eventId, Media source, String message) throws FacebookException;
-    
+
 
     /**
      * Returns the event's videos.
@@ -420,7 +421,7 @@ public interface EventMethods {
      * @see <a href="https://developers.facebook.com/docs/reference/api/event/#videos">Event#videos - Facebook Developers</a>
      */
     ResponseList<Video> getEventVideos(String eventId, Reading reading) throws FacebookException;
-    
+
     /**
      * Posts the video on a event's wall.
      * @param eventId the ID of a event
