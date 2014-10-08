@@ -35,6 +35,10 @@ import facebook4j.internal.org.json.JSONObject;
 
     public FacebookResponseImpl() {}
 
+    public FacebookResponseImpl(JSONObject json) {
+    	this.json = json;
+    }
+
     public FacebookResponseImpl(HttpResponse res) throws FacebookException {
         if (res == null) return;
         json = res.asJSONObject();

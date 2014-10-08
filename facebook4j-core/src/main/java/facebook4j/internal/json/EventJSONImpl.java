@@ -15,9 +15,19 @@
  */
 
 /**
- * 
+ *
  */
 package facebook4j.internal.json;
+
+import static facebook4j.internal.util.z_F4JInternalParseUtil.getBoolean;
+import static facebook4j.internal.util.z_F4JInternalParseUtil.getISO8601Datetime;
+import static facebook4j.internal.util.z_F4JInternalParseUtil.getRawString;
+import static facebook4j.internal.util.z_F4JInternalParseUtil.getTimeZone;
+import static facebook4j.internal.util.z_F4JInternalParseUtil.getURI;
+
+import java.net.URI;
+import java.util.Date;
+import java.util.TimeZone;
 
 import facebook4j.Category;
 import facebook4j.Event;
@@ -30,12 +40,6 @@ import facebook4j.internal.http.HttpResponse;
 import facebook4j.internal.org.json.JSONArray;
 import facebook4j.internal.org.json.JSONException;
 import facebook4j.internal.org.json.JSONObject;
-
-import java.net.URI;
-import java.util.Date;
-import java.util.TimeZone;
-
-import static facebook4j.internal.util.z_F4JInternalParseUtil.*;
 
 /**
  * @author Ryuji Yamashita - roundrop at gmail.com
@@ -57,7 +61,7 @@ import static facebook4j.internal.util.z_F4JInternalParseUtil.*;
     private String rsvpStatus;
     private URI ticketURI;
     private TimeZone timezone;
-    
+
     /*package*/EventJSONImpl(HttpResponse res, Configuration conf) throws FacebookException {
         super(res);
         JSONObject json = res.asJSONObject();
@@ -69,7 +73,7 @@ import static facebook4j.internal.util.z_F4JInternalParseUtil.*;
     }
 
     /*package*/EventJSONImpl(JSONObject json) throws FacebookException {
-        super();
+        super(json);
         init(json);
     }
 
